@@ -34,43 +34,55 @@ gameInputBoxes.forEach((input) => {
     checkWinner();
   });
 });
-let checkWinner = () => {
+  function checkWinner(){
 
     
     // Winning Condition Checker
     
     winningConditions.forEach((input) => {
-    let value1 = gameInputBoxes[input[0]].innerHTML;
-    let value2 = gameInputBoxes[input[1]].innerHTML;
-    let value3 = gameInputBoxes[input[2]].innerHTML;
-    if (value1 != "" && value1 == value2 && value1 == value3) {
-      if (value1 == `<img src="./rec.svg" alt="O here" width="200%">`) {
-        displayText.innerHTML = "Player O wins!";
-        overlayPage.style.visibility = "visible";
-      } else if (
-        value1 == `<img src="./close.svg" alt="X here" width="250%">`
-      ) {
-        displayText.innerHTML = "Player X wins!";
-        overlayPage.style.visibility = "visible";
-      }
-      gameInputBoxes.forEach((input) => {
-        input.disabled = true;
-      });
-    }
+     let value1 = gameInputBoxes[input[0]].innerHTML;
+     let value2 = gameInputBoxes[input[1]].innerHTML;
+     let value3 = gameInputBoxes[input[2]].innerHTML;
+     if (value1 != "" && value1 == value2 && value1 == value3) 
+      {
 
-// Draw Condition Checker
 
-    let counter = 0;
-    gameInputBoxes.forEach((input) => {
-      if (input.innerHTML != "") {
-        counter += 1;
-      }
-      if(counter == 9){
-        displayText.innerHTML = "Game Draw";
-        overlayPage.style.visibility = "visible";
-      }
-    });
-  });
+       if (value1 == `<img src="./rec.svg" alt="O here" width="200%">`) {
+        setTimeout (() => {
+          displayText.innerHTML = "Player O wins!";
+         overlayPage.style.visibility = "visible";
+         },50) 
+        
+       } else if (value1 == `<img src="./close.svg" alt="X here" width="250%">`) {
+         setTimeout (() => {
+          displayText.innerHTML = "Player X wins!";
+          overlayPage.style.visibility = "visible";
+         },50)
+       }
+       gameInputBoxes.forEach((input) => {
+         input.disabled = true;
+       });
+     }
+     else{
+
+       // Draw Condition Checker
+  
+       let counter = 0;
+      
+          gameInputBoxes.forEach((input) => {
+         if (input.innerHTML != "") {
+           counter += 1;
+         }
+         if (counter == 9) {
+            displayText.innerHTML = "Game Draw";
+            overlayPage.style.visibility = "visible";
+         }
+       });
+
+     }
+       
+     
+   });
 };
 newGameBtn.addEventListener("click", () => {
   gameInputBoxes.forEach((input) => {
